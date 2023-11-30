@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Routes, Route, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from './contexts/Auth/AuthContext';
 import './App.css';
 
+import { Home } from './pages/Home';
+import { Filas } from './pages/Filas';
+import { RequireAuth } from './contexts/Auth/RequireAuth';
+
 function App() {
+  const auth = useContext(AuthContext);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Minha Vez</h1>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/filas">Filas</Link>
+          {auth.email && <a href='javascript:;'>Sair</a>}
+        </nav>
       </header>
+
+      <hr />
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/filas" element={<RequireAuth><Filas /></RequireAuth>}/>
+      </Routes>
     </div>
   );
 }
