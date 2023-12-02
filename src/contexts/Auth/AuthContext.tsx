@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 export type AuthContextType = {
     email: string | null;
+    role: string | null;
     signin: (email: string, password: string) => Promise<boolean>;
     signout: () => void;
 }

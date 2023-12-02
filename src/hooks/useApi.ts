@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const api = axios.create({
     baseURL: 'http://localhost:8080'
@@ -10,13 +10,16 @@ export const useApi = () => ({
         return response.data;
     },
     signin: async (email: string, password: string) => {
-        const response = await api.post('/api/v1/auth/authenticate', {email, password});
-        console.log(`useApi: ${response.data}`);
+        const response = await api.post('/api/v1/auth/authenticate', { email, password });
         return response.data;
-
     },
-    logout:async () => {
+    logout: async () => {
         const response = await api.post('/logout');
         return response.data;
+    },
+    getTickets: async (filaId: number, config?: AxiosRequestConfig) => {
+        const response = await api.get(`/tickets/fila/${filaId}`, config);
+        // console.log('useApi: ' + response.data); // retorna "useApi: [object Object]"
+        return response;
     }
-})
+});

@@ -1,6 +1,7 @@
 import { useState, useContext, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
+import './index.css';
 
 export const Login = () => {
     const auth = useContext(AuthContext);
@@ -22,7 +23,7 @@ export const Login = () => {
         if (email && password) {
             const isLogged = await auth.signin(email, password);
             if (isLogged) {
-                navigate('/');
+                navigate('/filas');
             } else {
                 alert("Não deu certo.");
             }
@@ -30,9 +31,10 @@ export const Login = () => {
     }
 
     return (
-        <div>
-            <h2>Página Fechada</h2>
 
+        <section className="login-container">
+            <h2>Login</h2>
+            
             <input
                 type="text"
                 value={email}
@@ -45,7 +47,16 @@ export const Login = () => {
                 onChange={handlePasswordInput}
                 placeholder="Digite sua senha"
             />
+            <div className="links">
+                <div>
+                    <a href="#">Registrar-se</a>
+                </div>
+                <div>
+                    <a href="#">Esqueci a senha</a>
+                </div>
+            </div>
             <button onClick={handleLogin}>Logar</button>
-        </div>
+            
+        </section>
     );
 }

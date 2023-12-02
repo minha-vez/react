@@ -4,6 +4,7 @@ import { useApi } from "../../hooks/useApi";
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [email, setEmail] = useState<string | null>(null);
+    const [role, setRole] = useState<string | null>(null)
     const api = useApi();
 
     useEffect(() => {
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                 const data = await api.validateToken(storageData);
                 console.log(`validateToken: ${data.sub}`)
                 if(data.sub){
+                    setRole(data.roles[0])
                     setEmail(data.sub);
                 }
             }
@@ -40,8 +42,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
 
     const signout = async () => {
-        await api.logout();
         setEmail(null);
+        setToken('');
+        setRole(null);
     };
 
     const setToken = (token: string) => {
@@ -49,7 +52,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ email, signin, signout }}>
+        <AuthContext.Provider value={{ email, role, signin, signout }}>
             {children}
         </AuthContext.Provider>
     );

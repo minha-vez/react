@@ -1,0 +1,125 @@
+.content {
+    margin-top: 60px
+}
+
+.home1 { 
+    display: flex;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.home1 h1 {
+    text-align: right;
+    font-size: 200%;
+    padding: 5px;
+}
+
+.home1 a {
+    background-color: #4CC8D6;
+    padding: 7px 30px;
+    border-radius: 25px;
+    margin: 100px 0px;
+    color: black;
+    text-decoration:none;
+}
+
+.home1 a:hover {
+    background-color: #419DC4;
+}
+.melhore-text {
+    margin-right:10px;
+}
+
+.home2 {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+.home2 h1{
+    font-size:40px;
+}
+
+.home2 p {
+    margin: 50px 0px;
+    font-size: 25px;
+    max-width: 50vw;
+    text-align: center;
+}
+
+.produto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.produto img {
+    width: 350px;
+    height: 350px;
+    margin: 15px; /* Ajuste o espaçamento entre a imagem e o texto conforme necessário */
+}
+
+.produto h1 {
+    font-size: 40px;
+    max-width: 40vw;
+}
+
+.gallery-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    padding: 0 1vw;
+    margin: 60px 0px;
+}
+
+.gallery.items{
+    width: calc(50% - 20px);
+}
+
+.gallery-items img {
+    width: 10vw;
+    height: 100%;
+    border-radius:100px;
+    border: solid 1px #A759FF;
+    object-fit: cover;
+}
+ 
+.gallery.items figcaption{
+    text-align: center;
+}
+
+.consultores-text h1 {
+    height: 150px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size:3rem;
+    font-weight:700;
+}
+
+.consultores-text h2 {
+    height: 50px;
+    display:flex;justify-content:center;
+    align-items:center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight:600;
+}
+
+/* Estilos do rodapé */
+footer {
+    background-image: linear-gradient(to bottom, #F0F0F0, #ADD4DD); /* Cor de fundo do rodapé */
+    color: #161515; /* Cor do texto do rodapé */
+    text-align: center;
+    width: 100%;
+    height: 68px;    
+    -ms-flex-item-align: center;
+    bottom: 0;
+    padding: 10px 0;
+}
