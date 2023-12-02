@@ -19,7 +19,15 @@ export const useApi = () => ({
     },
     getTickets: async (filaId: number, config?: AxiosRequestConfig) => {
         const response = await api.get(`/tickets/fila/${filaId}`, config);
-        // console.log('useApi: ' + response.data); // retorna "useApi: [object Object]"
+        
         return response;
+    },
+    closeTicket: async (ticketId:any, config?: AxiosRequestConfig) => {
+        
+        await api.patch(`/tickets/ticket/finalizar/${ticketId}`,undefined, config)
+    },
+    callNext: async (ticketId:any, config?: AxiosRequestConfig) => {
+        
+        await api.patch(`/tickets/ticket/atender/${ticketId}`,undefined, config)
     }
 });

@@ -2,3 +2,38 @@
     border: solid 2px;
 }
 
+.fila-geral, .fila-pref {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+}
+
+.em-atendimento, .em-espera {
+    display: flex;
+    margin: 40px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.nome, .status {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.tipo-fila {
+    background-color: #12D992;
+    color: #000;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.status {
+    background-color: #076772;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+

@@ -6,8 +6,10 @@ import './filas.css';
 export const Filas = () => {
     const auth = useContext(AuthContext);
     const api = useApi();
+    const token = localStorage.getItem('authToken');
 
     interface Ticket {
+        id: number;
         nomePessoa: string;
         ordem: number;
         nomeEmpresa: string;
@@ -18,7 +20,7 @@ export const Filas = () => {
     
     const [filaGeral, setFilaGeral] = useState<Ticket[]>([]);
     const [filaPref, setFilaPref] = useState<Ticket[]>([]);
-    const teste = 0;
+    var update = 0;
 
     useEffect(() => {
         console.log('useEffect foi acionado');
@@ -26,9 +28,7 @@ export const Filas = () => {
         console.log(filaPref);
     
         const fetchTickets = async () => {
-            try {
-                const token = localStorage.getItem('authToken');
-    
+            try {    
                 if (token) {
                     const filaPrefId = 2;
                     const filaGeralId = 1
@@ -52,44 +52,90 @@ export const Filas = () => {
         };
     
         fetchTickets();
-    }, [teste]);
+    }, [update]);
     
+    const handleProximo = async (ticketAtendId : number, fila : Ticket[]) => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+        
+
+        await api.closeTicket(ticketAtendId, config);
+
+        console.log('passou request closeTicket')
+
+        const nextTicket = fila.filter(objeto => objeto.statusAtendimento === "ESPERA")[0].id;
+
+        console.log('fila ' + nextTicket);
+        await api.callNext(nextTicket, config);
+
+        console.log('passou request closeTicket')
+        window.location.reload();
+    }
 
     return (
         <div>
             <h2>Filas</h2>
 
-            <div className='geral border'>
+            <div className='fila-geral '>
+                
                 {filaGeral.map((ticket, index) => (
                     ticket.statusAtendimento === 'ATENDIMENTO' 
-                    ? 
-                    <div className='emAtendimento border'>
-                        <p>Fila geral</p>
+                    &&
+                    
+                    <div className='em-atendimento '>
+                        <button onClick={() => handleProximo(ticket.id, filaGeral)}>Próximo</button>
 
-                        <p key={index}> {ticket.nomePessoa}</p>
-                        <p> Em {ticket.statusAtendimento.toLowerCase()} </p>
+                        <p className='tipo-fila'>Fila geral</p>
+
+                        <p key={index} className='nome'> {ticket.nomePessoa}</p>
+
+                        <p className='status'> Em {ticket.statusAtendimento.toLowerCase()} </p>
                     </div>
-                    :
-                    <div className='emEspera border '>
-                        <p key={index}> {ticket.nomePessoa}</p>
-                        <p> Em {ticket.statusAtendimento.toLowerCase()} </p>
-                    </div>
+                
+                    
+                ))}
+
+                {filaGeral.map((ticket, index) => (
+                   ticket.statusAtendimento === 'ESPERA' 
+                    &&
+                    <div className='em-espera  '>
+                        <p key={index} className='nome'> {ticket.nomePessoa}</p>
+
+                        <p className='status'> Em {ticket.statusAtendimento.toLowerCase()} </p>
+                    </div> 
                 ))}
             </div>
 
-            <div className='preferencial border'>
+            <div className='fila-pref '>
+                
                 {filaPref.map((ticket, index) => (
                     ticket.statusAtendimento === 'ATENDIMENTO' 
-                    ? 
-                    <div className='emAtendimento border'>
-                        <p>Fila geral</p>
+                    &&
+                    
+                    <div className='em-atendimento '>
+                        <button onClick={() => handleProximo(ticket.id, filaPref)}>Próximo</button>
 
-                        <p key={index}>{ticket.statusAtendimento} {ticket.nomePessoa}</p>
+                        <p className='tipo-fila'>Fila geral</p>
+
+                        <p key={index} className='nome'> {ticket.nomePessoa}</p>
+
+                        <p className='status'> Em {ticket.statusAtendimento.toLowerCase()} </p>
                     </div>
-                    :
-                    <div className='emEspera border'>
-                        <p key={index}>{ticket.statusAtendimento} {ticket.nomePessoa}</p>
-                    </div>
+                
+                    
+                ))}
+
+                {filaPref.map((ticket, index) => (
+                   ticket.statusAtendimento === 'ESPERA' 
+                    &&
+                    <div className='em-espera  '>
+                        <p key={index} className='nome'> {ticket.nomePessoa}</p>
+
+                        <p className='status'> Em {ticket.statusAtendimento.toLowerCase()} </p>
+                    </div> 
                 ))}
             </div>
             
