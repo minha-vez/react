@@ -49,12 +49,13 @@ header {
     border-radius: 15px;
 }
 .nav-links button {
+    background-color: #F6735D;
     color: black;
     padding: 10px 20px;
 }
 
 .nav-links button:hover{
-    background-color: #A759FF;
+    background-color: #F65034;
     transition: background-color 0.5s ease;
     cursor: pointer;
 }
