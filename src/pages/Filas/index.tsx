@@ -88,7 +88,7 @@ export const Filas = () => {
                     <div className='em-atendimento '>
                         <button onClick={() => handleProximo(ticket.id, filaGeral)}>Próximo</button>
 
-                        <p className='tipo-fila'>Fila geral</p>
+                        <p className='tipo-fila geral'>Fila geral</p>
 
                         <p key={index} className='nome'> {ticket.nomePessoa}</p>
 
@@ -118,7 +118,7 @@ export const Filas = () => {
                     <div className='em-atendimento '>
                         <button onClick={() => handleProximo(ticket.id, filaPref)}>Próximo</button>
 
-                        <p className='tipo-fila'>Fila geral</p>
+                        <p className='tipo-fila pref'>Fila Preferencial</p>
 
                         <p key={index} className='nome'> {ticket.nomePessoa}</p>
 

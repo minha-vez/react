@@ -18,7 +18,7 @@ const HeaderCliente: React.FC = () => {
     <header>
       <nav className='navbar'>
         <div className="logo">
-            <a href="/home">
+            <a href="/">
                 <img src={logo} alt="Minha Vez"/>
             </a >
 

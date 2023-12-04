@@ -1,12 +1,13 @@
 
 
 .login-container {
-    background-color: #3498db;
+    background: rgb(173,212,221);
+    background: linear-gradient(90deg, rgba(173,212,221,1) 29%, rgba(198,255,186,1) 86%);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #fff;
+    color: #000;
     width: 30vw;
     margin-left:35%;
     margin-top: 50px;
@@ -30,7 +31,7 @@
 }
 
 .login-container button {
-    background-color: #2ecc71;
+    background-color: #A759FF;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -40,6 +41,6 @@
 }
 
 .login-container a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
 }
